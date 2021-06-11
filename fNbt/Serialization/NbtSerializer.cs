@@ -98,7 +98,7 @@ namespace fNbt.Serialization
 
 		private static object DeserializeChild(Type type, NbtTag tag)
 		{
-			if (type.IsAssignableTo(typeof(NbtTag)))
+			if (typeof(NbtTag).IsAssignableFrom(type))
 			{
 				tag.Name = null;
 				return tag;
@@ -107,11 +107,11 @@ namespace fNbt.Serialization
 			var value = GetValueFromTag(tag, type);
 			if (value != null) return value;
 
-			if (type.IsAssignableTo(typeof(IList)))
+			if (typeof(IList).IsAssignableFrom(type))
 			{
 				return GetList(type, (NbtList)tag);
 			}
-			else if (type.IsAssignableTo(typeof(IDictionary)))
+			else if (typeof(IDictionary).IsAssignableFrom(type))
 			{
 				return GetDictionary(type, (NbtCompound)tag);
 			}
