@@ -198,7 +198,7 @@ namespace fNbt.Serialization
 			return memberInfo.GetCustomAttribute<NbtPropertyAttribute>();
 		}
 
-		private static NbtTag? CreateBaseTag(string name, object value)
+		private static NbtTag CreateBaseTag(string name, object value)
 		{
 			switch(value)
 			{
@@ -219,7 +219,7 @@ namespace fNbt.Serialization
 			};
 		}
 
-		private static object? GetValueFromTag(NbtTag tag, Type type)
+		private static object GetValueFromTag(NbtTag tag, Type type)
 		{
 			switch (tag)
 			{
