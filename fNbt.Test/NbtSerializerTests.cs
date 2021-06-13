@@ -67,6 +67,18 @@ namespace fNbt.Test
 			AssertTagValue<NbtInt>(tag, FieldsAndPropertiesTestClass.NameForNamedTestIndProperty, raw.NamedTestIntProperty, t => t.Value);
 		}
 
+		[Test]
+		public void TypesTest()
+		{
+			var raw = new TypesTestClass();
+			var tag = NbtSerializer.SerializeObject(raw);
+
+			Assert.IsNotNull(tag);
+
+			AssertTagValue<NbtByte>(tag, nameof(raw.BoolFalseTestProperty), raw.BoolFalseTestProperty, t => Convert.ToBoolean(t.Value));
+			AssertTagValue<NbtByte>(tag, nameof(raw.BoolTrueTestProperty), raw.BoolTrueTestProperty, t => Convert.ToBoolean(t.Value));
+		}
+
 		private void CheckFromTag(bool fill)
 		{
 			var stringValue = "test_string_value_rv";
@@ -120,6 +132,12 @@ namespace fNbt.Test
 		{
 			[NbtProperty] public string EasyStringProperty { get; set; } = "easy property value";
 			[NbtProperty] public int EasyIntProperty { get; set; } = 123456789;
+		}
+
+		public class TypesTestClass
+		{
+			[NbtProperty(hideDefault: false)] public bool BoolFalseTestProperty { get; set; } = false;
+			[NbtProperty] public bool BoolTrueTestProperty { get; set; } = true;
 		}
 
 		public class FieldsAndPropertiesTestClass
