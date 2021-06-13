@@ -226,11 +226,21 @@ namespace fNbt.Serialization
 				case NbtByte _value:
 					if (type == typeof(bool))
 						return Convert.ToBoolean(_value.Value);
-					else
-						return type == typeof(byte) ? _value.Value : (sbyte)_value.Value;
-				case NbtShort _value: return type == typeof(short) ? _value.Value : (ushort)_value.Value;
-				case NbtInt _value: return type == typeof(int) ? _value.Value : (uint)_value.Value;
-				case NbtLong _value: return type == typeof(long) ? _value.Value : (ulong)_value.Value;
+					else if (type == typeof(sbyte))
+						return (sbyte)_value.Value;
+					return _value.Value;
+				case NbtShort _value:
+					if (type == typeof(ushort))
+						return (ushort)_value.Value;
+					return _value.Value;
+				case NbtInt _value:
+					if (type == typeof(uint))
+						return (uint)_value.Value;
+					return _value.Value;
+				case NbtLong _value:
+					if (type == typeof(ulong))
+						return (ulong)_value.Value;
+					return _value.Value;
 				case NbtDouble _value: return _value.Value;
 				case NbtFloat _value: return _value.Value;
 				case NbtString _value: return _value.Value;
