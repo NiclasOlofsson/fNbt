@@ -76,9 +76,35 @@ namespace fNbt.Test
 
 			Assert.IsNotNull(tag);
 
+			Assert.AreEqual(raw.BoolFalseTestProperty, deserialized.BoolFalseTestProperty);
+			Assert.AreEqual(raw.BoolTrueTestProperty, deserialized.BoolTrueTestProperty);
+			Assert.AreEqual(raw.ByteArrayTestProperty, deserialized.ByteArrayTestProperty);
+			Assert.AreEqual(raw.IntArrayTestProperty, deserialized.IntArrayTestProperty);
+			Assert.AreEqual(raw.ByteTestProperty, deserialized.ByteTestProperty);
+			Assert.AreEqual(raw.SByteTestProperty, deserialized.SByteTestProperty);
+			Assert.AreEqual(raw.ShortTestProperty, deserialized.ShortTestProperty);
+			Assert.AreEqual(raw.UShortTestProperty, deserialized.UShortTestProperty);
+			Assert.AreEqual(raw.IntTestProperty, deserialized.IntTestProperty);
+			Assert.AreEqual(raw.UIntTestProperty, deserialized.UIntTestProperty);
+			Assert.AreEqual(raw.LongTestProperty, deserialized.LongTestProperty);
+			Assert.AreEqual(raw.ULongTestProperty, deserialized.ULongTestProperty);
+
+			Assert.AreEqual(raw.NbtIntProperty.Value, deserialized.NbtIntProperty.Value);
+
 			AssertTagValue<NbtByte>(tag, nameof(raw.BoolFalseTestProperty), raw.BoolFalseTestProperty, t => Convert.ToBoolean(t.Value));
 			AssertTagValue<NbtByte>(tag, nameof(raw.BoolTrueTestProperty), raw.BoolTrueTestProperty, t => Convert.ToBoolean(t.Value));
-			AssertTagValue<NbtInt>(tag, nameof(raw.UIntTrueTestProperty), raw.UIntTrueTestProperty, t => (uint) t.Value);
+			AssertTagValue<NbtByteArray>(tag, nameof(raw.ByteArrayTestProperty), raw.ByteArrayTestProperty, t => t.Value);
+			AssertTagValue<NbtIntArray>(tag, nameof(raw.IntArrayTestProperty), raw.IntArrayTestProperty, t => t.Value);
+			AssertTagValue<NbtByte>(tag, nameof(raw.ByteTestProperty), raw.ByteTestProperty, t => t.Value);
+			AssertTagValue<NbtByte>(tag, nameof(raw.SByteTestProperty), raw.SByteTestProperty, t => (sbyte)t.Value);
+			AssertTagValue<NbtShort>(tag, nameof(raw.ShortTestProperty), raw.ShortTestProperty, t => t.Value);
+			AssertTagValue<NbtShort>(tag, nameof(raw.UShortTestProperty), raw.UShortTestProperty, t => (ushort)t.Value);
+			AssertTagValue<NbtInt>(tag, nameof(raw.IntTestProperty), raw.IntTestProperty, t => t.Value);
+			AssertTagValue<NbtInt>(tag, nameof(raw.UIntTestProperty), raw.UIntTestProperty, t => (uint)t.Value);
+			AssertTagValue<NbtLong>(tag, nameof(raw.LongTestProperty), raw.LongTestProperty, t => t.Value);
+			AssertTagValue<NbtLong>(tag, nameof(raw.ULongTestProperty), raw.ULongTestProperty, t => (ulong)t.Value);
+
+			AssertTagValue<NbtInt>(tag, nameof(raw.NbtIntProperty), raw.NbtIntProperty.Value, t => t.Value);
 		}
 
 		private void CheckFromTag(bool fill)
@@ -140,7 +166,18 @@ namespace fNbt.Test
 		{
 			[NbtProperty(hideDefault: false)] public bool BoolFalseTestProperty { get; set; } = false;
 			[NbtProperty] public bool BoolTrueTestProperty { get; set; } = true;
-			[NbtProperty] public uint UIntTrueTestProperty { get; set; } = 123;
+			[NbtProperty] public byte[] ByteArrayTestProperty { get; set; } = new byte[] { 1, 2, 3, 4 };
+			[NbtProperty] public int[] IntArrayTestProperty { get; set; } = new int[] { 5, 6, 7, 8 };
+			[NbtProperty] public byte ByteTestProperty { get; set; } = 1;
+			[NbtProperty] public sbyte SByteTestProperty { get; set; } = 2;
+			[NbtProperty] public short ShortTestProperty { get; set; } = 3;
+			[NbtProperty] public ushort UShortTestProperty { get; set; } = 4;
+			[NbtProperty] public int IntTestProperty { get; set; } = 5;
+			[NbtProperty] public uint UIntTestProperty { get; set; } = 6;
+			[NbtProperty] public ulong LongTestProperty { get; set; } = 7;
+			[NbtProperty] public ulong ULongTestProperty { get; set; } = 8;
+
+			[NbtProperty] public NbtInt NbtIntProperty { get; set; } = new NbtInt(100);
 		}
 
 		public class FieldsAndPropertiesTestClass

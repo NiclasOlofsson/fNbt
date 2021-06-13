@@ -28,7 +28,8 @@ namespace fNbt.Serialization
 		{
 			if (value is NbtTag normalValue)
 			{
-				if (name != null) normalValue.Name = name;
+				normalValue = (NbtTag)normalValue.Clone();
+				normalValue.Name = name;
 				return normalValue;
 			}
 
@@ -102,6 +103,7 @@ namespace fNbt.Serialization
 		{
 			if (typeof(NbtTag).IsAssignableFrom(type))
 			{
+				tag = (NbtTag)tag.Clone();
 				tag.Name = null;
 				return tag;
 			}
