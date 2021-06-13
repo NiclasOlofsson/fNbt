@@ -41,7 +41,7 @@ namespace fNbt.Serialization
 			}
 			else if (value is IDictionary dictionary)
 			{
-				return GetNbtCompaund(name, dictionary);
+				return GetNbtCompound(name, dictionary);
 			}
 
 			var type = value.GetType();
@@ -285,7 +285,7 @@ namespace fNbt.Serialization
 			}
 		}
 
-		private static NbtCompound GetNbtCompaund(string name, IDictionary dictionary)
+		private static NbtCompound GetNbtCompound(string name, IDictionary dictionary)
 		{
 			if (dictionary.Count == 0) return null;
 			if (dictionary.GetType().GetGenericArguments().First() != typeof(string)) return null;
