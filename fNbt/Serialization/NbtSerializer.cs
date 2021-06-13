@@ -86,19 +86,19 @@ namespace fNbt.Serialization
 		{
 			switch (value)
 			{
-				case byte:
-				case sbyte:
-				case short: 
-				case ushort: 
-				case int: 
-				case uint: 
-				case long: 
-				case ulong: 
-				case decimal: 
-				case double: 
-				case float: 
+				case Byte:
+				case SByte:
+				case Int16: 
+				case UInt16: 
+				case Int32: 
+				case UInt32: 
+				case Int64: 
+				case UInt64: 
+				case Decimal: 
+				case Double: 
+				case Single: 
 					return 0;
-				case bool: 
+				case Boolean: 
 					return false;
 				default: 
 					return null;
