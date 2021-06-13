@@ -202,19 +202,19 @@ namespace fNbt.Serialization
 		{
 			switch(value)
 			{
-				case byte _value: return new NbtByte(name, _value);
-				case sbyte _value: return new NbtByte(name, (byte)_value);
-				case short _value: return new NbtShort(name, _value);
-				case ushort _value: return new NbtShort(name, (short)_value);
-				case int _value: return new NbtInt(name, _value);
-				case uint _value: return new NbtInt(name, (int)_value);
-				case long _value: return new NbtLong(name, _value);
-				case ulong _value: return new NbtLong(name, (long)_value);
-				case double _value: return new NbtDouble(name, _value);
-				case float _value: return new NbtFloat(name, _value);
-				case string _value: return new NbtString(name, _value);
-				case byte[] _value: return new NbtByteArray(name, _value);
-				case int[] _value: return new NbtIntArray(name, _value);
+				case Byte _value: return new NbtByte(name, _value);
+				case SByte _value: return new NbtByte(name, (byte)_value);
+				case Int16 _value: return new NbtShort(name, _value);
+				case UInt16 _value: return new NbtShort(name, (short)_value);
+				case Int32 _value: return new NbtInt(name, _value);
+				case UInt32 _value: return new NbtInt(name, (int)_value);
+				case Int64 _value: return new NbtLong(name, _value);
+				case UInt64 _value: return new NbtLong(name, (long)_value);
+				case Double _value: return new NbtDouble(name, _value);
+				case Single _value: return new NbtFloat(name, _value);
+				case String _value: return new NbtString(name, _value);
+				case Byte[] _value: return new NbtByteArray(name, _value);
+				case Int32[] _value: return new NbtIntArray(name, _value);
 				default: return null;
 			};
 		}
