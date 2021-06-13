@@ -195,18 +195,16 @@ namespace fNbt.Serialization
 		{
 			var type = value.GetType();
 
-			if (type == typeof(byte) || type == typeof(sbyte))
-				return new NbtByte(name, (byte)value);
+			if (type == typeof(byte) || type == typeof(sbyte) || type == typeof(bool))
+				return new NbtByte(name, Convert.ToByte(value));
 			else if (type == typeof(short) || type == typeof(ushort))
-				return new NbtShort(name, (short)value);
+				return new NbtShort(name, Convert.ToInt16(value));
 			else if (type == typeof(int) || type == typeof(uint))
-				return new NbtInt(name, (int)value);
+				return new NbtInt(name, Convert.ToInt32(value));
 			else if (type == typeof(long) || type == typeof(ulong))
-				return new NbtLong(name, (long)value);
+				return new NbtLong(name, Convert.ToInt64(value));
 			else if (type == typeof(double))
 				return new NbtDouble(name, (double)value);
-			else if (type == typeof(bool))
-				return new NbtByte(name, Convert.ToByte(value));
 			else if (type == typeof(float))
 				return new NbtFloat(name, (float)value);
 			else if (type == typeof(string))
