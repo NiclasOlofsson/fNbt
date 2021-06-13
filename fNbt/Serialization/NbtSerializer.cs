@@ -84,15 +84,18 @@ namespace fNbt.Serialization
 
 		public static object GetDefaultValue(object value)
 		{
-			return value switch
+			switch (value)
 			{
-				byte or sbyte or
+				case byte or sbyte or
 				short or short or
 				int or uint or
 				long or ulong or
-				decimal or double or float => 0,
-				bool => false,
-				_ => null
+				decimal or double or float: 
+					return 0;
+				case bool: 
+					return false;
+				default: 
+					return null;
 			};
 		}
 
@@ -191,39 +194,39 @@ namespace fNbt.Serialization
 
 		private static NbtTag? CreateBaseTag(string name, object value)
 		{
-			return value switch
+			switch(value)
 			{
-				byte _value => new NbtByte(name, _value),
-				sbyte _value => new NbtByte(name, (byte)_value),
-				short _value => new NbtShort(name, _value),
-				ushort _value => new NbtShort(name, (short)_value),
-				int _value => new NbtInt(name, _value),
-				uint _value => new NbtInt(name, (int)_value),
-				long _value => new NbtLong(name, _value),
-				ulong _value => new NbtLong(name, (long)_value),
-				double _value => new NbtDouble(name, _value),
-				float _value => new NbtFloat(name, _value),
-				string _value => new NbtString(name, _value),
-				byte[] _value => new NbtByteArray(name, _value),
-				int[] _value => new NbtIntArray(name, _value),
-				_ => null
+				case byte _value: return new NbtByte(name, _value);
+				case sbyte _value: return new NbtByte(name, (byte)_value);
+				case short _value: return new NbtShort(name, _value);
+				case ushort _value: return new NbtShort(name, (short)_value);
+				case int _value: return new NbtInt(name, _value);
+				case uint _value: return new NbtInt(name, (int)_value);
+				case long _value: return new NbtLong(name, _value);
+				case ulong _value: return new NbtLong(name, (long)_value);
+				case double _value: return new NbtDouble(name, _value);
+				case float _value: return new NbtFloat(name, _value);
+				case string _value: return new NbtString(name, _value);
+				case byte[] _value: return new NbtByteArray(name, _value);
+				case int[] _value: return new NbtIntArray(name, _value);
+				default: return null;
 			};
 		}
 
 		private static object? GetValueFromTag(NbtTag tag, Type type)
 		{
-			return (tag) switch
+			switch (tag)
 			{
-				NbtByte _value => type == typeof(byte) ? _value.Value : (sbyte)_value.Value,
-				NbtShort _value => type == typeof(short) ? _value.Value : (ushort)_value.Value,
-				NbtInt _value => type == typeof(int) ? _value.Value : (uint)_value.Value,
-				NbtLong _value => type == typeof(long) ? _value.Value : (ulong)_value.Value,
-				NbtDouble _value => _value.Value,
-				NbtFloat _value => _value.Value,
-				NbtString _value => _value.Value,
-				NbtByteArray _value => _value.Value,
-				NbtIntArray _value => _value.Value,
-				_ => null
+				case NbtByte _value: return type == typeof(byte) ? _value.Value : (sbyte)_value.Value;
+				case NbtShort _value: return type == typeof(short) ? _value.Value : (ushort)_value.Value;
+				case NbtInt _value: return type == typeof(int) ? _value.Value : (uint)_value.Value;
+				case NbtLong _value: return type == typeof(long) ? _value.Value : (ulong)_value.Value;
+				case NbtDouble _value: return _value.Value;
+				case NbtFloat _value: return _value.Value;
+				case NbtString _value: return _value.Value;
+				case NbtByteArray _value: return _value.Value;
+				case NbtIntArray _value: return _value.Value;
+				default: return null;
 			};
 		}
 
